@@ -49,7 +49,7 @@ try {
     $post_id = (new FacebookRequest(
         $session, 
         'POST', 
-        '/'.$this->url.'/feed', 
+        '/'.$this->config['url'].'/feed', 
         $this->data )
     )->execute()->getGraphObject()->asArray();
 } catch (FacebookRequestException $e) {
