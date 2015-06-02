@@ -43,7 +43,7 @@ class FacebookPost {
     }
     
     public function post(){
-        $session = new FacebookSession($token);
+        $session = new FacebookSession($this->data['access_token']);
  
 try {
     $post_id = (new FacebookRequest(
