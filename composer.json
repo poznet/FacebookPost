@@ -1,0 +1,19 @@
+{
+    "name": "poznet/FacebookPost",
+    "description": "Class for FB Posting ",
+    "homepage": "https://github.com/poznet/FacebookPost",
+    "version": "0.0.1",
+    
+    "require": {
+        "php": ">=5.3",
+        "facebook/php-sdk-v4" : "*"
+    },
+    "autoload": {         
+          "psr-0": { 
+              "Poznet\\FacebookPost": "src" 
+              }
+         
+         
+    } 
+
+}
