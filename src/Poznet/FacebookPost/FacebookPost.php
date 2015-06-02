@@ -4,31 +4,59 @@ namespace Poznet\FacebookPost;
 
 use Facebook\FacebookSession;
 use Facebook\FacebookRequest;
-use Facebook\GraphObject;
+use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
 
  
 class FacebookPost {
     
     private $config = array();
+    private $data=array();
     
-    public function __construct($id=NULL,$secret=NULL,$token) {
+    public function __construct($id=NULL,$secret=NULL,$token=NULL,$url=NULL) {
         $this->config['appId'] = $id;
         $this->config['secret'] = $secret;
         $this->config['fileUpload'] =false;
-        
-        $fb = new Facebook($config);
+        $this->config['url'] =$url;
+        $this->data['access_token']=$token;        
+        FacebookSession::setDefaultApplication($this->config['appId'], $this->config['secret']);
+    }
+    
+    public function setMessage($txt){
+        $this->data['message']=$txt;
+    }
+    
+    public function setLink($link){
+        $this->data['link']=$link;
+    }
+    
+     public function setPicture($image){
+        $this->data['picture']=$image;
+    }
+    
+    public function setName($name){
+        $this->data['name']=$name;
+    }
+    
+    public function setDescription($txt){
+        $this->data['description']=$txt;
+    }
+    
+    public function post(){
+        $session = new FacebookSession($token);
  
-// define your POST parameters (replace with your own values)
-$params = array(
-  "access_token" => "YOUR_ACCESS_TOKEN", // see: https://developers.facebook.com/docs/facebook-login/access-tokens/
-  "message" => "Here is a blog post about auto posting on Facebook using PHP #php #facebook",
-  "link" => "http://www.pontikis.net/blog/auto_post_on_facebook_with_php",
-  "picture" => "http://i.imgur.com/lHkOsiH.png",
-  "name" => "How to Auto Post on Facebook with PHP",
-  "caption" => "www.pontikis.net",
-  "description" => "Automatically post on Facebook with PHP using Facebook PHP SDK. How to create a Facebook app. Obtain and extend Facebook access tokens. Cron automation."
-);
+try {
+    $post_id = (new FacebookRequest(
+        $session, 
+        'POST', 
+        '/'.$this->url.'/feed', 
+        $this->data )
+    )->execute()->getGraphObject()->asArray();
+} catch (FacebookRequestException $e) {
+    echo 'ERROR! ' . __LINE__ . $e->getMessage();   
+} catch (Exception $e) {
+    echo 'ERROR! ' . __LINE__ . $e->getMessage();
+}
         
         //
      
