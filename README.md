@@ -11,7 +11,10 @@ Class is wrapper for  facebook sdk 4 , and main goal is to make  posting on FB a
  - on Get Token -> Get Access Token select "manage_pages" and "publish_pages" on extended prmission.
  - change Get Token to FB where you want to publish
  - copy Access Token
- 
+
+Default life time  of  this token is  2 hours.  It can be extendend to 2 months in Api Explorer
+
+
 ###### Installation 
 Via Composer  (content  for  composer.json)
 
