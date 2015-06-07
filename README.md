@@ -43,11 +43,11 @@ $url='name of  facebook page (copy from url) ';
 
 
 $fb=new FacebookPost($id,$pass,$token,$url);
-$fb->setDescription('Pozycjonowanie stron');
+$fb->setDescription(' Post description ');
 $fb->setLink('www.pozycjoner.net');
-$fb->setMessage('firma od pozycjonowania');
-$fb->setName('Pozycjonowanie');
-$fp->setPicture('urlto pisture');
+$fb->setMessage('Message');
+$fb->setName('Name ');
+$fp->setPicture('url to picture ');
 $fb->post();
 ```
 
